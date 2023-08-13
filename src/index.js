@@ -63,7 +63,26 @@ CODE_TABLE['**********'] = ' ';
 
 
 function decode(expr) {
+	const arrSubstr = (str) => {
+		let result = [];
+		for (let i = 0; i < expr.length; i = i + 10) {
+			result.push(`${str[i]}${str[i + 1]}${str[i + 2]}${str[i + 3]}${str[i + 4]}${str[i + 5]}${str[i + 6]}${str[i + 7]}${str[i + 8]}${str[i + 9]}`);
+		}
+		return result;
+	}
 
+	const substrings = arrSubstr(expr);
+
+	let resArr = [];
+	for (let i = 0; i < substrings.length; i++) {
+		for (let key in CODE_TABLE) {
+			if (substrings[i] === key) {
+				resArr.push(CODE_TABLE[key])
+			}
+		}
+	}
+
+	return resArr.join('');
 
 }
 
